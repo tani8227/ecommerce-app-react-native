@@ -35,8 +35,8 @@ const SignIn = (props) => {
             console.log("inside handle login :", user);
             const resultAction = await dispatch(firebaseUserLogin(user)).unwrap();
             console.log("Login Success:", resultAction);
-           await AsyncStorage.setItem("userId", resultAction?.uid);        
-            props.navigation.navigate("HomeStack",
+            await AsyncStorage.setItem("userId", resultAction?.uid);
+            navigation.navigate("HomeStack",
                 {
                     screen: "Home"
                 });

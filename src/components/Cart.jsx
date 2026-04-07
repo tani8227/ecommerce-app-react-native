@@ -4,39 +4,36 @@ import { View, Text, FlatList, Image } from "react-native";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
 import cartStyle from "../styles/cart.style.jsx";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleProductDecreaseQty, handleProductIncreaseQty, setCartItems } from "../redux/reducers/cart/cartSlice.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Cart = () => {
     const { cartItems } = useSelector((state) => state.cart);
-    const { isLogin } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    console.log("cartItems:", cartItems, isLogin);
-    
-    useEffect(()=>{
-            loadCart()
-    },[])
-    
 
-  useEffect(() => {
-    loadCart();
-}, []);
+    useEffect(() => {
+        loadCart()
+    }, [])
 
-const loadCart = async () => {
-    try {
-        const data = await AsyncStorage.getItem("cartItems");
 
-        if (data) {
-            const parsed = JSON.parse(data);
-            dispatch(setCartItems(parsed)); 
-        }
-    } catch (error) {
-        console.log("Error loading cart:", error);
-    }
-};
+    async function loadCart() {
+        try {
+            const data = await AsyncStorage.getItem("cartItems");
+              console.log("carts:", data)
+              if (data) {
+                  const parsed = JSON.parse(data);
+                  dispatch(setCartItems(parsed));
+                }
+            } catch (error) {
+                console.log("Error loading cart:", error);
+            }
+        };
 
+        
+        
+        console.log("cartItems:", cartItems)
     return (
         <View style={cartStyle.container} >
             <FlatList
@@ -58,8 +55,8 @@ const loadCart = async () => {
                                 <Text style={cartStyle.cartItemTextStyle}>{item?.qty}</Text>
                             </View>
                             <View style={cartStyle.cartItemQuantityBtnWrapper} >
-                                <MaterialIcons onPress={()=>dispatch(handleProductIncreaseQty(item.id))} name="add-box" size={30} color="blue" />
-                                <MaterialDesignIcons onPress={()=>dispatch(handleProductDecreaseQty(item.id))} name="minus" size={30} color="black" />
+                                <MaterialIcons onPress={() => dispatch(handleProductIncreaseQty(item.id))} name="add-box" size={30} color="blue" />
+                                <MaterialDesignIcons onPress={() => dispatch(handleProductDecreaseQty(item.id))} name="minus" size={30} color="black" />
                             </View>
                         </View>
                     </View>

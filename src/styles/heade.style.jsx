@@ -76,6 +76,17 @@ const headerStyle = StyleSheet.create(
             padding:6,
             borderRadius:10,
 
+        },
+        searchInputWrapper:
+        {
+            width:Dimensions.get("screen").width-190,
+        },
+        searchInput:
+        {
+            borderWidth:1.5,
+            borderColor:"grey",
+            borderRadius:50,
+            padding:10,
         }
     })
 

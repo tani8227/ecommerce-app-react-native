@@ -21,10 +21,13 @@ const Product = (props) => {
 
     async function handdleToCard() {
         try {
-            dispatch(addToCart({ ...user, ...product, qty: 1 }));
-            await AsyncStorage.setItem("cartItems", JSON.stringify(cartItems));
+            const newCardItem = { ...user, ...product, qty: 1 };
+            const updatedCartItems = [ ...cartItems, newCardItem ];
+            console.log("inside product :", updatedCartItems);
+            dispatch(addToCart(newCardItem));
+            await AsyncStorage.setItem("cartItems", JSON.stringify(updatedCartItems));      
         } catch (error) {
-            console.log("error in setting the user in asyncStorage")
+            console.log("error in setting the cartItems in asyncStorage")
         }
     }
 

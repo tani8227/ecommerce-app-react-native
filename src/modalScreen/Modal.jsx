@@ -9,13 +9,15 @@ import modalStyles from "./modalStyles.jsx";
 
 const CardModal = ({ toggle, setToggle, user, product }) => {
   const dispatch = useDispatch();
-  const { qty , cartItems } = useSelector((state) => state.cart);
+  const { qty, cartItems } = useSelector((state) => state.cart);
 
 
   async function handleOk() {
     setToggle(false);
-    dispatch(addToCart({ ...user, ...product, qty: qty }));
-    AsyncStorage.setItem("cartItems", JSON.stringify(cartItems));
+    const newCardItem = { ...user, ...product, qty: qty };
+    const updatedCartItems = [...cartItems, newCardItem];
+    dispatch(addToCart(newCardItem));
+    AsyncStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   }
 
   return (

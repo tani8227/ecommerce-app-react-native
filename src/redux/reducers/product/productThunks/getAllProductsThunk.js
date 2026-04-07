@@ -12,7 +12,7 @@ const getAllProducts = createAsyncThunk(
         ...doc.data(),
       }));
 
-      return products; // ✅ clean array
+      return products; 
     } catch (error) {
       return rejectWithValue(error.message);
     }
