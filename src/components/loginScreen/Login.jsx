@@ -36,10 +36,13 @@ const SignIn = (props) => {
             const resultAction = await dispatch(firebaseUserLogin(user)).unwrap();
             console.log("Login Success:", resultAction);
             await AsyncStorage.setItem("userId", resultAction?.uid);
-            navigation.navigate("HomeStack",
-                {
-                    screen: "Home"
-                });
+            navigation.navigate("MainTab", {
+                screen: "HomeStack",
+                params: {
+                    screen: "Home",
+                },
+            });
+
         } catch (error) {
             console.log("Login error:", error);
         }

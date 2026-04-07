@@ -27,12 +27,12 @@ const categoryTitleData = [
 
 
 const Category = (props) => {
-    
+
     const dispatch = useDispatch();
     const { filterProduct } = useSelector((state) => state.product);
-  
+
     console.log(filterProduct);
- 
+
     function handleFilterCategory(filterTitle) {
         console.log(filterTitle);
         dispatch(filterProductsByCategory(filterTitle));
