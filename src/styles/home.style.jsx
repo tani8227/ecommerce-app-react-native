@@ -18,7 +18,6 @@ const homeStyle = StyleSheet.create(
         {
             width: Dimensions.get("screen").width,
             height: 80,
-
         },
         corousolSection:
         {
@@ -31,17 +30,17 @@ const homeStyle = StyleSheet.create(
         },
 
         inputSearchProductContainer: {
-            width: Dimensions.get("screen").width - 190,
+            width: Dimensions.get("screen").width - 140,
             position: "absolute",
-            top: 55,
-            left: 145,
+            top: 60,
+            left: 120,
             right: 0,
             zIndex: 999,
         },
 
         inputSearchProductWrapper: {
             backgroundColor: "#fff",
-            maxHeight: 300,
+            maxHeight: 210,
             borderRadius: 5,
         },
         listContainer:
@@ -52,12 +51,11 @@ const homeStyle = StyleSheet.create(
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 5,
-            backgroundColor:"#eeebeb",
-
+            backgroundColor: "#eeebeb",
         },
         listWrapper:
         {
-            width: Dimensions.get("screen").width - 210,
+            width: Dimensions.get("screen").width - 180,
             height: 60,
             display: "flex",
             flexDirection: "row",
@@ -67,7 +65,6 @@ const homeStyle = StyleSheet.create(
             padding: 5,
             gap: 5,
             borderRadius: 5,
-            // backgroundColor: "red",
         },
         cardImg:
         {
@@ -81,17 +78,12 @@ const homeStyle = StyleSheet.create(
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // backgroundColor:"blue",
         },
         cartItemTextStyle:
         {
             width: 90,
             textAlign: "left",
-            // backgroundColor:"pink",
         },
-
-
     });
-
 
 export default homeStyle;

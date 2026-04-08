@@ -6,32 +6,6 @@ import { useSelector } from "react-redux";
 
 const OrderSuccess = () => {
     const navigation = useNavigation();
-    // useEffect(() => {
-    //     handletimer();
-    //     return (() => {
-    //         clearInterval(intervalId);
-    //     })
-    // }, []);
-
-    // const [time, setTime] = useState(5);
-    // const [intervalId, setIntervalId] = useState(5);
-    // function handletimer() {
-    //     const countDown = setInterval(() => {
-    //         if (time > 0) {
-    //             setTime((prev) => (prev - 1));
-    //         }
-    //     }, 1000);
-    //     setIntervalId(countDown);
-    // }
-
-    // if (time == 0) {
-    //     clearInterval(intervalId)
-    //     setTime(5),
-    //     navigation.navigate("OrderStack", {
-    //         screen: "Orders",
-    //     });
-    // }
- 
     const { orderItems } = useSelector((state)=>state.order);
     console.log(orderItems)
 

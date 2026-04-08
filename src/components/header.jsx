@@ -12,9 +12,12 @@ const Header = ({ navigationProps, }) => {
     const { inputSearchProduct } = useSelector((state) => state.product);
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+
 
 
     function handleSearch(input) {
+        setSearchValue(input);
         dispatch(searchProduct(input));
     }
 
