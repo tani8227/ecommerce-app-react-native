@@ -13,7 +13,6 @@ const OrderSuccess = () => {
         <View style={orderSuccessStyle.container} >
             <Text style={orderSuccessStyle.textStyle} >Ordered Succesfully !!!</Text>
              <TouchableOpacity onPress={()=>(navigation.navigate("OrderStack",{screen:"Orders"}))}>
-
             <Text  style={orderSuccessStyle.timerStyle} >Go To Orders</Text>
              </TouchableOpacity>
         </View>)

@@ -7,6 +7,8 @@ const initialState = {
     user: null,
     isLogin: false,
     error: null,
+    loading :true,
+    userId: null,
 };
 
 const authSlice = createSlice({
@@ -17,6 +19,11 @@ const authSlice = createSlice({
             state.user = action.payload;
             state.isLogin = true;
         },
+        setIsLogin:(state,action)=>
+            {
+               state.isLogin = action.payload.flag; 
+               state.userId = action.payload.id; 
+            },
         userLogOut: (state) => {
             state.user = null;
             state.isLogin = false;
@@ -24,8 +31,6 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-
-
             .addCase(firebaseUserSignUp.fulfilled, (state, action) => {
                 state.user = action.payload;
                 state.isLogin = true;
@@ -34,8 +39,6 @@ const authSlice = createSlice({
                 state.error = action.payload;
                 state.isLogin = false;
             })
-
-
             .addCase(firebaseUserLogin.fulfilled, (state, action) => {
                 state.user = action.payload;
                 state.isLogin = true;
@@ -44,25 +47,21 @@ const authSlice = createSlice({
                 state.error = action.payload;
                 state.isLogin = false;
             })
-
             .addCase(getUser.fulfilled, (state, action) => {
                 const newUser = action.payload;
-
                 if (state.user?.uid === newUser?.uid) {
                     return;
                 }
-
                 state.user = newUser;
                 state.isLogin = true;
+                state.loading = false;
             })
             .addCase(getUser.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLogin = false;
             });
-
-
     },
 });
 
-export const { userLogin, userLogOut } = authSlice.actions;
+export const { userLogin, userLogOut, setIsLogin } = authSlice.actions;
 export default authSlice.reducer;

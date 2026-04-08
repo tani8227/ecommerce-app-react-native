@@ -42,7 +42,6 @@ const SignIn = (props) => {
                     screen: "Home",
                 },
             });
-
         } catch (error) {
             console.log("Login error:", error);
         }

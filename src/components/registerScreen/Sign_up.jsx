@@ -33,7 +33,7 @@ const SignUp = (props) => {
             console.log("user:", user)
             const resultAction = await dispatch(firebaseUserSignUp(user)).unwrap();
             console.log("Signup Success:", resultAction);
-            
+
             props.navigation.navigate("HomeStack",
                 {
                     screen: "Login"
