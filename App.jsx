@@ -3,20 +3,14 @@ import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-
-import { setIsLogin } from "./src/redux/reducers/auth/authSlice.js";
-import getUser from "./src/redux/reducers/auth/authThunks/getUser.js";
-import getAllProducts from "./src/redux/reducers/product/productThunks/getAllProductsThunk.js";
-
+import loadingStyle from "./src/styles/loading.Style.js";
 import MainTab from "./MainTab.jsx";
 import AuthStack from "./authStack.jsx";
-
-
+import { setIsLogin } from "./src/redux/reducers/auth/authSlice.js";
 
 const App = () => {
-  const { isLogin, user } = useSelector((state) => state.auth);
+  const { isLogin, isLoginLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const [check, setCheck] = useState(null);
 
   useEffect(() => {
     checkAuth();
@@ -25,17 +19,22 @@ const App = () => {
   async function checkAuth() {
     const id = await AsyncStorage.getItem("userId");
     if (id) {
-      setCheck(true);
       dispatch(setIsLogin({ id: id, flag: true }));
-    } else {
-      setCheck(false);
     }
   }
 
+  if (isLoginLoading) {
+    return (
+      <View style={loadingStyle.coantiner}>
+        <ActivityIndicator size={"large"} animating={isLoginLoading} color={"red"} />
+      </View>
+    )
+  }
+
+
   return (
     <NavigationContainer>
-      {check != null && isLogin && <MainTab />}
-      {check != null && !isLogin && <AuthStack />}
+      {isLogin ? <MainTab /> : <AuthStack />}
     </NavigationContainer>
 
   );

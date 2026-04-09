@@ -7,7 +7,8 @@ const initialState = {
     user: null,
     isLogin: false,
     error: null,
-    loading :true,
+    isLoginLoading: true,
+    loading: true,
     userId: null,
 };
 
@@ -19,11 +20,11 @@ const authSlice = createSlice({
             state.user = action.payload;
             state.isLogin = true;
         },
-        setIsLogin:(state,action)=>
-            {
-               state.isLogin = action.payload.flag; 
-               state.userId = action.payload.id; 
-            },
+        setIsLogin: (state, action) => {
+            state.isLogin = action.payload.flag;
+            state.userId = action.payload.id;
+            state.isLoginLoading = false;
+        },
         userLogOut: (state) => {
             state.user = null;
             state.isLogin = false;

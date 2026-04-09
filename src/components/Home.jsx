@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 
 
 import homeStyle from "../styles/home.style.jsx"
-import loadingStyles from "../styles/loading.Style.js"
+import loadingStyle from "../styles/loading.Style.js"
 import  getUser  from "../redux/reducers/auth/authThunks/getUser.js"
 import  getAllProducts  from "../redux/reducers/product/productThunks/getAllProductsThunk.js"
 
@@ -36,7 +36,7 @@ const Home = (props) => {
 
     if (loading) {
         return (
-            <View style={loadingStyles.coantiner}>
+            <View style={loadingStyle.coantiner}>
                 <ActivityIndicator size={"large"} animating={loading} />
             </View>
         )
